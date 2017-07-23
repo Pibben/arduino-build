@@ -59,3 +59,16 @@ avr-g++ -c $OPTIONS $INC_COMMON $INC_MEGA -I$SPI -DF_CPU=16000000 -mmcu=atmega25
 avr-ar r spi-mega-16m.a SPI.o
 
 rm *.o
+
+LORA=sx127x/src
+
+avr-g++ -c $OPTIONS $INC_COMMON $INC_STD -I$SPI -I$LORA -DF_CPU=8000000 -mmcu=atmega328p $LORA/LoRa.cpp
+avr-ar r lora-std-8m.a LoRa.o
+
+avr-g++ -c $OPTIONS $INC_COMMON $INC_STD -I$SPI -I$LORA -DF_CPU=16000000 -mmcu=atmega328p $LORA/LoRa.cpp
+avr-ar r lora-std-16m.a LoRa.o
+
+avr-g++ -c $OPTIONS $INC_COMMON $INC_MEGA -I$SPI -I$LORA -DF_CPU=16000000 -mmcu=atmega2560 $LORA/LoRa.cpp
+avr-ar r lora-mega-16m.a LoRa.o
+
+rm *.o
